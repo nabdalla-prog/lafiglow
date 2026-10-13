@@ -3,213 +3,607 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lafiglow · Makeup Artistry</title>
-<meta name="description" content="Lafiglow — luxury makeup for weddings, events and every glow-worthy day. Book online.">
+<title>Lafiglow · Makeup Artist in the Quad Cities | Bridal &amp; Glam</title>
+<meta name="description" content="Lafiglow is a Quad Cities makeup artist for weddings, events and every glow-worthy day. Soft glam, full glam and bridal makeup in Davenport, Bettendorf, Moline and Rock Island. Book online.">
+<meta name="theme-color" content="#2A1420">
+<link rel="canonical" href="https://lafiglow.com/">
+
+<!-- Social share preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lafiglow">
+<meta property="og:title" content="Lafiglow · Makeup Artist in the Quad Cities">
+<meta property="og:description" content="Luxury makeup for weddings, events and every day you want to glow. Book online.">
+<meta property="og:url" content="https://lafiglow.com/">
+<meta property="og:image" content="https://lafiglow.com/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A1420'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='44' fill='%23C9A46A'%3EL%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Lafiglow",
+  "description": "Makeup artist for weddings, events and special occasions in the Quad Cities.",
+  "url": "https://lafiglow.com/",
+  "email": "hello@lafiglow.com",
+  "priceRange": "$35 - $150",
+  "areaServed": [
+    {"@type": "City", "name": "Davenport, IA"},
+    {"@type": "City", "name": "Bettendorf, IA"},
+    {"@type": "City", "name": "Moline, IL"},
+    {"@type": "City", "name": "Rock Island, IL"},
+    {"@type": "City", "name": "East Moline, IL"}
+  ],
+  "sameAs": ["https://instagram.com/lafiglow"],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": "https://squareup.com/appointments/book/L2T6F4907JKFY"
+  }
+}
+</script>
+
 <style>
-  /* ===== Brand tokens — change colors here ===== */
+  /* ===== Brand tokens: change colors here ===== */
   :root{
     --mulberry:#2A1420;   /* deep base */
+    --plum:#3B1D2C;       /* raised dark surface */
     --rosewood:#7E3F52;   /* accent */
     --champagne:#C9A46A;  /* metallic accent */
+    --gold-soft:#E4CFA3;  /* light metallic */
     --blush:#F1DDD4;      /* soft skin tone */
     --porcelain:#FBF6F3;  /* page background */
     --ink:#3A2530;        /* body text */
     --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
     --sans:"Jost", "Helvetica Neue", Arial, sans-serif;
+    --ease:cubic-bezier(.22,.7,.2,1);
+    --shadow:0 1px 2px rgba(42,20,32,.06),0 12px 32px -12px rgba(42,20,32,.22);
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
-  html{scroll-padding-top:env(safe-area-inset-top,0px)}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);line-height:1.65;font-size:1.0625rem}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:5rem;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);line-height:1.65;font-size:1.0625rem;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   img{max-width:100%;display:block}
   a{color:inherit}
-  :focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
-  .wrap{width:min(1080px,90vw);margin-inline:auto}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--champagne);outline-offset:3px;border-radius:4px}
+  .wrap{width:min(1120px,90vw);margin-inline:auto}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .skip{position:absolute;left:1rem;top:-4rem;z-index:50;background:var(--champagne);color:var(--mulberry);padding:.6rem 1rem;border-radius:999px;text-decoration:none}
+  .skip:focus{top:1rem}
+  .eyebrow{display:inline-flex;align-items:center;gap:.75rem;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rosewood);margin-bottom:1.1rem;font-weight:400}
+  .eyebrow::before{content:"";width:2.2rem;height:1px;background:currentColor;opacity:.6}
 
-  /* ===== Nav ===== */
-  nav{position:absolute;inset:0 0 auto;z-index:5;padding:calc(1.5rem + env(safe-area-inset-top,0px)) 0 1.5rem}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center}
-  .mark{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--blush);text-decoration:none}
-  nav ul{list-style:none;display:flex;gap:2rem}
-  nav ul a{color:var(--blush);text-decoration:none;font-size:.95rem;opacity:.85}
-  nav ul a:hover{opacity:1}
+  /* ===== Buttons ===== */
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2.2rem;border-radius:999px;text-decoration:none;font-weight:400;font-size:1rem;letter-spacing:.03em;cursor:pointer;
+    transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .btn svg{width:1.05em;height:1.05em;transition:transform .25s var(--ease)}
+  .btn:hover svg{transform:translateX(3px)}
+  .btn-gold{background:linear-gradient(120deg,var(--champagne),var(--gold-soft) 50%,var(--champagne));background-size:200% 100%;color:var(--mulberry);box-shadow:0 10px 30px -10px rgba(201,164,106,.7)}
+  .btn-gold:hover{background-position:100% 0;transform:translateY(-2px)}
+  .btn-line{border:1px solid var(--rosewood);color:var(--mulberry)}
+  .btn-line:hover{background:var(--mulberry);color:var(--blush);border-color:var(--mulberry)}
+  .btn-ghost{border:1px solid rgba(241,221,212,.35);color:var(--blush)}
+  .btn-ghost:hover{border-color:var(--blush);background:rgba(241,221,212,.08)}
 
-  /* ===== Hero: the wordmark catches light like highlighter ===== */
-  .hero{position:relative;min-height:100svh;background:var(--mulberry);color:var(--blush);display:grid;place-items:center;text-align:center;overflow:hidden;padding:6rem 0 4rem}
-  .hero::before{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;
-    background:radial-gradient(circle,rgba(241,221,212,.22) 0%,rgba(201,164,106,.12) 30%,transparent 65%);
-    top:50%;left:50%;transform:translate(-50%,-50%);}
+  /* ===== Nav: transparent over hero, solid after scroll ===== */
+  .nav{position:fixed;inset:0 0 auto;z-index:20;padding:calc(1.1rem + env(safe-area-inset-top,0px)) 0 1.1rem;transition:background .35s var(--ease),padding .35s var(--ease),box-shadow .35s var(--ease)}
+  .nav.solid{background:rgba(42,20,32,.86);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);padding-top:calc(.7rem + env(safe-area-inset-top,0px));padding-bottom:.7rem;box-shadow:0 8px 30px -18px rgba(0,0,0,.6)}
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .mark{font-family:var(--serif);font-style:italic;font-size:1.7rem;color:var(--blush);text-decoration:none;line-height:1}
+  .nav ul{list-style:none;display:flex;align-items:center;gap:2rem}
+  .nav ul a{color:var(--blush);text-decoration:none;font-size:.92rem;letter-spacing:.04em;opacity:.8;position:relative;transition:opacity .2s}
+  .nav ul a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--champagne);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+  .nav ul a:not(.btn):hover{opacity:1}
+  .nav ul a:not(.btn):hover::after{transform:scaleX(1);transform-origin:left}
+  .nav .btn{padding:.6rem 1.4rem;font-size:.9rem;opacity:1;color:var(--mulberry)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;min-height:100svh;background:var(--mulberry);color:var(--blush);display:grid;place-items:center;text-align:center;overflow:hidden;padding:7rem 0 5rem;isolation:isolate}
+  .hero .glow{position:absolute;border-radius:50%;filter:blur(10px);z-index:-1;pointer-events:none}
+  .hero .g1{width:70vmax;height:70vmax;top:50%;left:50%;translate:-50% -50%;background:radial-gradient(circle,rgba(241,221,212,.22) 0%,rgba(201,164,106,.12) 30%,transparent 65%);animation:breathe 9s ease-in-out infinite}
+  .hero .g2{width:42vmax;height:42vmax;top:-12vmax;right:-14vmax;background:radial-gradient(circle,rgba(126,63,82,.55),transparent 65%);animation:drift 16s ease-in-out infinite alternate}
+  .hero .g3{width:36vmax;height:36vmax;bottom:-14vmax;left:-12vmax;background:radial-gradient(circle,rgba(201,164,106,.22),transparent 65%);animation:drift 19s ease-in-out infinite alternate-reverse}
+  @keyframes breathe{50%{scale:1.08;opacity:.85}}
+  @keyframes drift{to{translate:-6vmax 5vmax}}
+  /* film grain */
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.13;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   .hero-inner{position:relative}
-  .wordmark{font-family:var(--serif);font-style:italic;font-weight:400;line-height:.9;
-    font-size:clamp(4.5rem,17vw,13rem);letter-spacing:-.02em;
-    background:linear-gradient(100deg,var(--blush) 0%,var(--blush) 40%,#fff8ef 50%,var(--blush) 60%,var(--blush) 100%);
+  .hero .eyebrow{color:var(--champagne);justify-content:center}
+  .hero .eyebrow::after{content:"";width:2.2rem;height:1px;background:currentColor;opacity:.6}
+  .wordmark{font-family:var(--serif);font-style:italic;font-weight:300;line-height:.9;
+    font-size:clamp(4.8rem,18vw,14rem);letter-spacing:-.025em;padding:.05em .1em .22em;margin-bottom:-.14em;
+    background:linear-gradient(100deg,var(--blush) 0%,var(--blush) 40%,#fff8ef 48%,var(--gold-soft) 52%,var(--blush) 60%,var(--blush) 100%);
     background-size:250% 100%;background-position:100% 0;
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:sheen 2.8s ease-out .4s forwards}
+    animation:sheen 3s var(--ease) .5s forwards}
   @keyframes sheen{to{background-position:0 0}}
-  .tagline{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.7rem);margin:1.5rem auto 2.5rem;max-width:30ch;opacity:.9}
-  .btn{display:inline-block;padding:1rem 2.4rem;border-radius:999px;text-decoration:none;font-weight:400;font-size:1rem;letter-spacing:.02em;transition:background .25s,color .25s}
-  .btn-gold{background:var(--champagne);color:var(--mulberry)}
-  .btn-gold:hover{background:var(--blush)}
-  .btn-line{border:1px solid var(--champagne);color:var(--mulberry)}
-  .btn-line:hover{background:var(--mulberry);color:var(--blush);border-color:var(--mulberry)}
+  .tagline{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,1.75rem);margin:1.25rem auto 2.5rem;max-width:30ch;opacity:.92;line-height:1.35}
+  .hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .rise{opacity:0;translate:0 18px;animation:rise 1s var(--ease) forwards}
+  .d1{animation-delay:.15s}.d2{animation-delay:.9s}.d3{animation-delay:1.15s}.d4{animation-delay:1.4s}
+  @keyframes rise{to{opacity:1;translate:0 0}}
+  .scroll-cue{position:absolute;bottom:calc(1.6rem + env(safe-area-inset-bottom,0px));left:50%;translate:-50% 0;width:1px;height:3rem;background:linear-gradient(var(--champagne),transparent);overflow:hidden}
+  .scroll-cue::after{content:"";position:absolute;top:-40%;left:0;width:1px;height:40%;background:var(--blush);animation:cue 2.2s ease-in-out infinite}
+  @keyframes cue{to{top:110%}}
+
+  /* ===== Marquee ribbon ===== */
+  .ribbon{background:var(--rosewood);color:var(--blush);overflow:hidden;padding:1.05rem 0;border-block:1px solid rgba(201,164,106,.35)}
+  .ribbon-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
+  .ribbon ul{display:flex;list-style:none;flex-shrink:0}
+  .ribbon li{font-family:var(--serif);font-style:italic;font-size:1.45rem;white-space:nowrap;display:flex;align-items:center}
+  .ribbon li::after{content:"✦";font-style:normal;font-size:.8rem;color:var(--champagne);margin:0 2rem}
+  @keyframes marquee{to{transform:translateX(-50%)}}
 
   /* ===== Sections ===== */
-  section{padding:clamp(4.5rem,10vw,8rem) 0}
-  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.1;color:var(--mulberry);margin-bottom:1rem}
+  section{padding:clamp(5rem,11vw,9rem) 0;position:relative}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.2rem);line-height:1.04;color:var(--mulberry);margin-bottom:1.1rem;letter-spacing:-.01em}
+  h2 em{font-weight:300;color:var(--rosewood)}
   .lede{max-width:52ch;margin-bottom:3rem}
+  .split-head{display:grid;grid-template-columns:1fr 1fr;gap:2rem 4rem;align-items:end;margin-bottom:3.5rem}
+  .split-head .lede{margin-bottom:.4rem}
 
-  /* Services as a printed menu with leader dots */
-  .menu{list-style:none;max-width:760px}
-  .menu li{padding:1.4rem 0;border-bottom:1px solid rgba(126,63,82,.18)}
+  /* scroll reveal (only when JS is on, so content never hides without it) */
+  .js .reveal{opacity:0;translate:0 28px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+  .js .reveal.in{opacity:1;translate:0 0}
+
+  /* ===== Services: a printed menu ===== */
+  .services-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:4rem;align-items:start}
+  .menu{list-style:none}
+  .menu li{padding:1.5rem 0;border-bottom:1px solid rgba(126,63,82,.16);position:relative}
+  .menu li::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--champagne);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+  .menu li:hover::before{transform:scaleX(1)}
   .menu .row{display:flex;align-items:baseline;gap:.75rem}
-  .menu .name{font-family:var(--serif);font-size:1.6rem;color:var(--mulberry)}
-  .menu .dots{flex:1;border-bottom:1px dotted rgba(126,63,82,.45);transform:translateY(-.35rem)}
-  .menu .price{font-family:var(--serif);font-size:1.45rem;color:var(--rosewood)}
-  .menu p{font-size:.97rem;max-width:56ch;margin-top:.25rem;opacity:.85}
-  .services-cta{margin-top:3rem}
+  .menu .name{font-family:var(--serif);font-size:1.7rem;color:var(--mulberry);line-height:1.2;transition:color .3s}
+  .menu li:hover .name{color:var(--rosewood)}
+  .menu .dots{flex:1;min-width:1.5rem;border-bottom:1px dotted rgba(126,63,82,.45);transform:translateY(-.35rem)}
+  .menu .price{font-family:var(--serif);font-size:1.55rem;color:var(--rosewood);white-space:nowrap}
+  .menu p{font-size:.97rem;max-width:56ch;margin-top:.3rem;opacity:.85}
+  .dur{display:inline-block;margin-left:.35rem;padding:.05rem .55rem;border:1px solid rgba(126,63,82,.3);border-radius:999px;font-size:.75rem;letter-spacing:.08em;white-space:nowrap;vertical-align:1px}
+  .tag{display:inline-block;vertical-align:middle;margin-left:.6rem;padding:.2rem .65rem;border-radius:999px;font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;background:var(--mulberry);color:var(--gold-soft);font-weight:400}
+  .note{font-size:.88rem;opacity:.75;margin-top:1.4rem}
+  .service-card{position:sticky;top:6.5rem;background:var(--mulberry);color:var(--blush);border-radius:200px 200px 18px 18px;padding:5rem 2.4rem 2.6rem;text-align:center;box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+  .service-card::before{content:"";position:absolute;inset:auto -30% -40% -30%;height:80%;background:radial-gradient(circle,rgba(201,164,106,.28),transparent 60%);z-index:-1}
+  .service-card h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:2.2rem;line-height:1.1;margin-bottom:.8rem}
+  .service-card p{opacity:.85;margin-bottom:1.8rem;font-size:.98rem}
+  .service-card .fine{font-size:.82rem;opacity:.7;margin:1.2rem 0 0}
 
-  /* Portfolio */
+  /* ===== Portfolio ===== */
   .portfolio{background:var(--blush)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-  .grid figure{aspect-ratio:4/5;border-radius:180px 180px 6px 6px;overflow:hidden;position:relative}
-  .grid figure:nth-child(even){margin-top:3rem}
-  .grid img{width:100%;height:100%;object-fit:cover}
-  /* placeholder swatches — delete once real photos are added */
-  .ph{width:100%;height:100%;display:grid;place-items:end center;padding-bottom:1.2rem;font-size:.85rem;color:var(--mulberry);opacity:.9}
-  .ph1{background:linear-gradient(160deg,#e9c3b4,#b9786c)}
-  .ph2{background:linear-gradient(160deg,#f3d9c9,#c99a7d)}
-  .ph3{background:linear-gradient(160deg,#d8a593,#7e3f52)}
-  .ph4{background:linear-gradient(160deg,#f6e3d6,#d4a98d)}
-  .ph5{background:linear-gradient(160deg,#c48a77,#5b2d3b)}
-  .ph6{background:linear-gradient(160deg,#ecccbb,#a8685b)}
-  .insta{margin-top:3.5rem}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .grid figure{position:relative}
+  .grid figure:nth-child(3n+2){margin-top:4rem}
+  .shot{display:block;width:100%;aspect-ratio:4/5;border-radius:200px 200px 10px 10px;overflow:hidden;position:relative;cursor:zoom-in;box-shadow:var(--shadow);background:var(--rosewood)}
+  .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .shot:hover img{transform:scale(1.05)}
+  .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(42,20,32,.55),transparent 45%);opacity:0;transition:opacity .4s}
+  .shot:hover::after,.shot:focus-visible::after{opacity:1}
+  .grid figcaption{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--mulberry);margin-top:.8rem;text-align:center}
+  .more-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;width:100%;aspect-ratio:4/5;border-radius:200px 200px 10px 10px;background:var(--mulberry);color:var(--blush);text-decoration:none;box-shadow:var(--shadow);position:relative;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease)}
+  .more-tile::before{content:"";position:absolute;inset:auto -30% -40%;height:80%;background:radial-gradient(circle,rgba(201,164,106,.35),transparent 60%);z-index:-1;transition:transform .8s var(--ease)}
+  .more-tile:hover{transform:translateY(-4px)}
+  .more-tile:hover::before{transform:translateY(-15%)}
+  .more-tile svg{width:2.4rem;height:2.4rem;color:var(--champagne)}
+  .more-big{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1}
+  .more-small{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+  .insta{margin-top:4rem;text-align:center}
 
-  /* Booking steps (a real sequence) */
-  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;counter-reset:s}
-  .steps li{counter-increment:s}
-  .steps li::before{content:counter(s);display:block;font-family:var(--serif);font-style:italic;font-size:3.2rem;color:var(--champagne);line-height:1;margin-bottom:.75rem}
-  .steps h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--mulberry);margin-bottom:.4rem}
+  /* Lightbox */
+  .lightbox{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100dvh;color:var(--blush)}
+  .lightbox::backdrop{background:rgba(26,12,20,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .lightbox[open]{display:grid;place-items:center;animation:fade .3s var(--ease)}
+  @keyframes fade{from{opacity:0}}
+  .lb-stage{width:min(560px,86vw);aspect-ratio:4/5;max-height:78dvh;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+  .lb-stage img{width:100%;height:100%;object-fit:cover}
+  .lb-cap{position:absolute;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.25rem}
+  .lb-btn{position:absolute;width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(241,221,212,.3);transition:background .2s,border-color .2s}
+  .lb-btn:hover{background:rgba(241,221,212,.1);border-color:var(--blush)}
+  .lb-btn svg{width:1.2rem;height:1.2rem}
+  .lb-close{top:calc(1.2rem + env(safe-area-inset-top,0px));right:1.2rem}
+  .lb-prev{left:1.2rem;top:50%;translate:0 -50%}
+  .lb-next{right:1.2rem;top:50%;translate:0 -50%}
 
-  /* Policies */
+  /* ===== About ===== */
+  .about-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2.5rem,7vw,6rem);align-items:center}
+  .portrait{position:relative}
+  .portrait .frame{aspect-ratio:4/5;border-radius:240px 240px 12px 12px;overflow:hidden;box-shadow:var(--shadow)}
+  .portrait .frame{background:var(--rosewood)}
+  .portrait .frame img{width:100%;height:100%;object-fit:cover}
+  .portrait::before{content:"";position:absolute;inset:-1.1rem 1.1rem 1.1rem -1.1rem;border:1px solid var(--champagne);border-radius:240px 240px 12px 12px;z-index:-1}
+  .portrait .badge{position:absolute;right:-1rem;bottom:2.5rem;width:7.5rem;height:7.5rem;border-radius:50%;background:var(--mulberry);color:var(--gold-soft);display:grid;place-items:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.15;box-shadow:var(--shadow);animation:spin 30s linear infinite}
+  .portrait .badge span{animation:spin 30s linear infinite reverse;display:block}
+  @keyframes spin{to{rotate:360deg}}
+  .about-copy p{margin-bottom:1.1rem;max-width:54ch}
+  .about-copy .pull{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,2.6vw,1.9rem);line-height:1.3;color:var(--rosewood);margin:1.6rem 0;padding-left:1.4rem;border-left:1px solid var(--champagne)}
+  .values{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+  .values li{padding:.5rem 1.1rem;border:1px solid rgba(126,63,82,.25);border-radius:999px;font-size:.88rem}
+
+  /* ===== Reviews ===== */
+  .reviews{background:var(--mulberry);color:var(--blush);overflow:hidden;isolation:isolate}
+  .reviews::before{content:"\201C";position:absolute;top:-2rem;left:4vw;font-family:var(--serif);font-size:clamp(14rem,30vw,26rem);line-height:1;color:var(--rosewood);opacity:.35;z-index:-1}
+  .reviews h2{color:var(--blush)}
+  .reviews .eyebrow{color:var(--champagne)}
+  .slider{position:relative;max-width:820px}
+  .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+  .track::-webkit-scrollbar{display:none}
+  .slide{flex:0 0 100%;scroll-snap-align:start;padding-right:2rem}
+  .stars{color:var(--champagne);letter-spacing:.25em;font-size:1rem;margin-bottom:1.2rem}
+  .slide blockquote{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.35rem);line-height:1.3;font-weight:300}
+  .slide figcaption{margin-top:1.6rem;font-size:.92rem;letter-spacing:.06em;opacity:.8}
+  .slide figcaption strong{font-weight:400;color:var(--gold-soft)}
+  .controls{display:flex;align-items:center;gap:.75rem;margin-top:2.6rem}
+  .ctl{width:2.9rem;height:2.9rem;border-radius:50%;border:1px solid rgba(241,221,212,.3);display:grid;place-items:center;transition:background .2s,border-color .2s}
+  .ctl:hover{background:rgba(241,221,212,.1);border-color:var(--blush)}
+  .ctl svg{width:1.1rem;height:1.1rem}
+  .dots-nav{display:flex;gap:.5rem;margin-left:.75rem}
+  .dots-nav button{position:relative;width:.55rem;height:.55rem;border-radius:999px;background:rgba(241,221,212,.3);transition:width .35s var(--ease),background .35s}
+  .dots-nav button::after{content:"";position:absolute;inset:-.6rem -.3rem}
+  .dots-nav button[aria-current="true"]{width:1.8rem;background:var(--champagne)}
+
+  /* ===== Booking steps ===== */
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;counter-reset:s}
+  .steps li{counter-increment:s;background:#fff;border:1px solid rgba(126,63,82,.1);border-radius:18px;padding:2.2rem 2rem;box-shadow:var(--shadow);transition:transform .3s var(--ease)}
+  .steps li:hover{transform:translateY(-4px)}
+  .steps li::before{content:"0" counter(s);display:block;font-family:var(--serif);font-style:italic;font-size:3.4rem;color:var(--champagne);line-height:1;margin-bottom:1rem}
+  .steps h3{font-family:var(--serif);font-weight:500;font-size:1.55rem;color:var(--mulberry);margin-bottom:.4rem}
+
+  /* ===== FAQ ===== */
+  .faq{background:var(--blush)}
+  .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:4rem;align-items:start}
+  .faq details{border-bottom:1px solid rgba(126,63,82,.2)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.4rem 0;font-family:var(--serif);font-size:1.45rem;color:var(--mulberry);line-height:1.25}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:0 0 auto;width:2rem;height:2rem;border-radius:50%;border:1px solid var(--rosewood);position:relative;transition:background .3s,rotate .4s var(--ease)}
+  .faq summary .pm::before,.faq summary .pm::after{content:"";position:absolute;top:50%;left:50%;width:.7rem;height:1px;background:var(--rosewood);translate:-50% -50%}
+  .faq summary .pm::after{rotate:90deg;transition:rotate .4s var(--ease)}
+  .faq details[open] .pm{background:var(--mulberry);rotate:180deg}
+  .faq details[open] .pm::before,.faq details[open] .pm::after{background:var(--blush)}
+  .faq details[open] .pm::after{rotate:0deg}
+  .faq details p{padding:0 3rem 1.5rem 0;max-width:60ch}
+  .area{margin-top:2rem;padding:1.6rem;border-radius:18px;background:var(--porcelain);box-shadow:var(--shadow)}
+  .area h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;color:var(--mulberry);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+  .area h3 svg{width:1.2rem;height:1.2rem;color:var(--rosewood)}
+  .area p{font-size:.95rem}
+
+  /* ===== Policies ===== */
   .policies{background:var(--mulberry);color:var(--blush)}
   .policies h2{color:var(--blush)}
-  .policies dl{display:grid;grid-template-columns:1fr 2fr;gap:1.5rem 3rem;max-width:860px}
-  .policies dt{font-family:var(--serif);font-size:1.4rem;color:var(--champagne)}
-  .policies dd{opacity:.88}
+  .policies .eyebrow{color:var(--champagne)}
+  .policy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+  .policy{border:1px solid rgba(201,164,106,.25);border-radius:18px;padding:1.8rem 2rem;background:linear-gradient(160deg,rgba(255,255,255,.04),transparent)}
+  .policy h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;color:var(--gold-soft);margin-bottom:.4rem}
+  .policy p{opacity:.88;font-size:.98rem}
 
-  /* Footer */
-  footer{padding:4rem 0 3rem;text-align:center}
-  footer .mark{color:var(--mulberry);font-size:2.4rem;display:inline-block;margin-bottom:1rem}
-  footer p{font-size:.95rem;opacity:.8}
-  footer .links{display:flex;justify-content:center;gap:2rem;margin:1.25rem 0 2rem}
+  /* ===== Final CTA ===== */
+  .final{text-align:center;overflow:hidden;isolation:isolate}
+  .final::before{content:"";position:absolute;width:60vmax;height:60vmax;left:50%;top:50%;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(241,221,212,.9),rgba(201,164,106,.18) 40%,transparent 68%);z-index:-1}
+  .final h2{font-size:clamp(3rem,8vw,6.2rem);font-style:italic;font-weight:300}
+  .final p{margin:0 auto 2.4rem;max-width:44ch}
 
-  /* ===== Mobile ===== */
-  @media (max-width:760px){
-    nav ul{display:none}
-    .grid{grid-template-columns:repeat(2,1fr)}
-    .grid figure:nth-child(even){margin-top:1.5rem}
-    .steps{grid-template-columns:1fr;gap:2rem}
-    .policies dl{grid-template-columns:1fr;gap:.25rem}
-    .policies dd{margin-bottom:1.25rem}
-    .menu .name{font-size:1.35rem}
+  /* ===== Footer ===== */
+  footer{padding:4.5rem 0 calc(3rem + env(safe-area-inset-bottom,0px));text-align:center;border-top:1px solid rgba(126,63,82,.12)}
+  footer .mark{color:var(--mulberry);font-size:2.6rem;display:inline-block;margin-bottom:.5rem}
+  footer .where{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  footer .links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem 2rem;margin:1.6rem 0 2rem}
+  footer .links a{text-decoration:none;border-bottom:1px solid rgba(126,63,82,.3);padding-bottom:2px;transition:border-color .2s,color .2s}
+  footer .links a:hover{border-color:var(--rosewood);color:var(--rosewood)}
+  footer small{font-size:.85rem;opacity:.7}
+
+  /* ===== Floating mobile Book pill ===== */
+  .fab{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;translate:-50% 160%;opacity:0;transition:translate .5s var(--ease),opacity .5s var(--ease);display:none;white-space:nowrap}
+  .fab.show{translate:-50% 0;opacity:1}
+
+  /* ===== Responsive ===== */
+  @media (max-width:960px){
+    .services-grid,.about-grid,.faq-grid{grid-template-columns:1fr;gap:3rem}
+    .service-card{position:relative;top:0}
+    .split-head{grid-template-columns:1fr;gap:0}
+    .portrait{max-width:420px;margin-inline:auto;width:100%}
   }
+  @media (max-width:760px){
+    .nav ul li:not(:last-child){display:none}
+    .fab{display:inline-flex}
+    .nav li:last-child{transition:opacity .3s}
+    .nav.fab-on li:last-child{opacity:0;pointer-events:none}
+    .hero .eyebrow{letter-spacing:.18em;font-size:.72rem;gap:.5rem}
+    .hero .eyebrow::before,.hero .eyebrow::after{width:1.2rem}
+    .grid{grid-template-columns:repeat(2,1fr);gap:.9rem}
+    .grid figure:nth-child(3n+2){margin-top:0}
+    .grid figure:nth-child(even){margin-top:2.2rem}
+    .grid figcaption{font-size:1rem}
+    .steps,.policy-grid{grid-template-columns:1fr}
+    .menu .row{flex-wrap:wrap}
+    .menu .name{font-size:1.4rem}
+    .menu .price{font-size:1.35rem}
+    .menu .dots{min-width:1rem}
+    .faq summary{font-size:1.25rem}
+    .slide blockquote{font-size:1.45rem;line-height:1.35}
+    .faq details p{padding-right:0}
+    .portrait .badge{right:.2rem;width:6.2rem;height:6.2rem;font-size:.92rem}
+    .lb-prev,.lb-next{top:auto;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));translate:none}
+    .lb-cap{bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
+    footer{padding-bottom:calc(6rem + env(safe-area-inset-bottom,0px))}
+  }
+  @media (hover:none){.shot::after{opacity:0}}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .wordmark{animation:none;background-position:0 0}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    .wordmark{background-position:0 0;animation:none}
+    .rise{opacity:1;translate:none;animation:none}
+    .ribbon-track{animation:none}
+    .js .reveal{opacity:1;translate:none}
+    .track{scroll-behavior:auto}
   }
 </style>
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav aria-label="Main">
+<!-- Booking link lives directly in every "Book" button.
+     To change it, find & replace: https://squareup.com/appointments/book/L2T6F4907JKFY -->
+
+<nav class="nav" id="nav" aria-label="Main">
   <div class="wrap">
-    <a href="#top" class="mark">Lafiglow</a>
+    <a href="#top" class="mark" aria-label="Lafiglow, back to top">Lafiglow</a>
     <ul>
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#policies">Policies</a></li>
-      <li><a class="book-link" href="#">Book</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="btn btn-gold" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="hero" id="top">
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+  <div class="glow g3" aria-hidden="true"></div>
   <div class="hero-inner wrap">
+    <p class="eyebrow rise d1">Quad Cities Makeup Artist</p>
     <h1 class="wordmark">Lafiglow</h1>
-    <p class="tagline">Luxury makeup for weddings, events, and every day you want to glow.</p>
-    <a class="btn btn-gold book-link" href="#">Book an appointment</a>
+    <p class="tagline rise d2">Luxury makeup for weddings, events, and every day you want to glow.</p>
+    <div class="hero-ctas rise d3">
+      <a class="btn btn-gold" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book an appointment
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#work">See the work</a>
+    </div>
   </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
 </header>
 
-<main>
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <ul><li>Bridal</li><li>Soft glam</li><li>Full glam</li><li>Bridal parties</li><li>Special events</li><li>On location</li><li>Quad Cities</li></ul>
+    <ul><li>Bridal</li><li>Soft glam</li><li>Full glam</li><li>Bridal parties</li><li>Special events</li><li>On location</li><li>Quad Cities</li></ul>
+  </div>
+</div>
+
+<main id="main">
   <!-- ===== SERVICES: edit names, prices, descriptions ===== -->
   <section id="services">
     <div class="wrap">
-      <h2>Services</h2>
-      <p class="lede">Every look starts with skin prep and is finished to last through photos, tears and dancing. Lashes are included unless noted.</p>
-      <ul class="menu">
-        <li><div class="row"><span class="name">Mini glam</span><span class="dots"></span><span class="price">$35</span></div>
-          <p>A quick, fresh glow: skin prep, complexion, brows, mascara and lip.</p></li>
-        <li><div class="row"><span class="name">Soft glam</span><span class="dots"></span><span class="price">$45</span></div>
-          <p>Polished and luminous with soft definition and lashes.</p></li>
-        <li><div class="row"><span class="name">Full glam</span><span class="dots"></span><span class="price">$60</span></div>
-          <p>Sculpted, defined and camera-ready with a full lash set.</p></li>
-        <li><div class="row"><span class="name">Bridal (trial + wedding day)</span><span class="dots"></span><span class="price">$150</span></div>
-          <p>Your wedding-day look plus a trial session beforehand.</p></li>
-        <li><div class="row"><span class="name">Bridal party</span><span class="dots"></span><span class="price">$50 each</span></div>
-          <p>For bridesmaids, mothers and guests.</p></li>
-        <li><div class="row"><span class="name">Travel to you</span><span class="dots"></span><span class="price">+$30</span></div>
-          <p>On-location service at your home, venue or hotel.</p></li>
-      </ul>
-      <div class="services-cta"><a class="btn btn-line book-link" href="#">Book an appointment</a></div>
+      <div class="split-head reveal">
+        <div>
+          <p class="eyebrow">The menu</p>
+          <h2>Services &amp; <em>pricing</em></h2>
+        </div>
+        <p class="lede">Every look starts with skin prep and is finished to last through photos, tears and dancing.</p>
+      </div>
+      <div class="services-grid">
+        <div class="reveal">
+          <ul class="menu">
+            <li><div class="row"><span class="name">Mini glam</span><span class="dots"></span><span class="price">$35</span></div>
+              <p>A quick, fresh glow: skin prep, complexion, brows, mascara and lip. No lashes. <span class="dur">45 min</span></p></li>
+            <li><div class="row"><span class="name">Soft glam</span><span class="dots"></span><span class="price">$45</span></div>
+              <p>Polished and luminous with soft definition. Lashes included. <span class="dur">1 hr</span></p></li>
+            <li><div class="row"><span class="name">Full glam</span><span class="dots"></span><span class="price">$60</span></div>
+              <p>Sculpted, defined and camera-ready with a full lash set. <span class="dur">1 hr 30 min</span></p></li>
+            <li><div class="row"><span class="name">Bridal <span class="tag">Signature</span></span><span class="dots"></span><span class="price">$150</span></div>
+              <p>Your wedding-day look plus a trial session beforehand. Book your wedding date and I'll reach out to schedule your trial. <span class="dur">2 hr</span></p></li>
+            <li><div class="row"><span class="name">Bridal party</span><span class="dots"></span><span class="price">$50 each</span></div>
+              <p>For bridesmaids, mothers and guests. Lashes included. Book one appointment per person. <span class="dur">1 hr</span></p></li>
+            <li><div class="row"><span class="name">Travel to you</span><span class="dots"></span><span class="price">+$30</span></div>
+              <p>Prefer not to travel? Choose "come to you" when booking for your home, venue or hotel anywhere in the Quad Cities.</p></li>
+          </ul>
+          <p class="note">A $15 deposit secures your appointment and goes toward your total.</p>
+        </div>
+        <aside class="service-card reveal" aria-label="Book now">
+          <h3>Your glow,<br>booked in a minute</h3>
+          <p>Choose a service, pick a time that works, and you're set. No back-and-forth texting.</p>
+          <a class="btn btn-gold" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Check availability
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="fine">Planning a wedding? Book your trial early. Popular dates fill fast.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- ===== PORTFOLIO: replace each .ph div with <img src="images/look1.jpg" alt="..."> ===== -->
+  <!-- ===== PORTFOLIO =====
+       To add or swap a photo: export a 4:5 crop as images/look-N-640.webp and images/look-N-1080.webp,
+       then copy one <figure> below and update src/srcset, alt, caption and the button's aria-label. -->
   <section class="portfolio" id="work">
     <div class="wrap">
-      <h2>Recent work</h2>
-      <p class="lede">A few favorite looks. See more on Instagram.</p>
-      <div class="grid">
-        <figure><div class="ph ph1">Photo 1</div></figure>
-        <figure><div class="ph ph2">Photo 2</div></figure>
-        <figure><div class="ph ph3">Photo 3</div></figure>
-        <figure><div class="ph ph4">Photo 4</div></figure>
-        <figure><div class="ph ph5">Photo 5</div></figure>
-        <figure><div class="ph ph6">Photo 6</div></figure>
+      <div class="split-head reveal">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h2>Recent <em>work</em></h2>
+        </div>
+        <p class="lede">A few favorite looks, from soft and glowy to full glam. Tap any photo to see it up close.</p>
       </div>
-      <div class="insta"><a class="btn btn-line" href="https://instagram.com/lafiglow" target="_blank" rel="noopener">Follow @lafiglow</a></div>
+      <div class="grid">
+        <figure class="reveal"><button class="shot" type="button" aria-label="View larger: Full glam"><img src="images/look-1-640.webp" srcset="images/look-1-400.webp 400w, images/look-1-640.webp 640w, images/look-1-1080.webp 1080w" sizes="(max-width:760px) 45vw, 340px" alt="Full glam with fluffy lashes, rosy blush and a soft pink lip" width="640" height="800" loading="lazy" decoding="async"></button><figcaption>Full glam</figcaption></figure>
+        <figure class="reveal"><button class="shot" type="button" aria-label="View larger: Sunlit soft glam"><img src="images/look-2-640.webp" srcset="images/look-2-400.webp 400w, images/look-2-640.webp 640w, images/look-2-1080.webp 1080w" sizes="(max-width:760px) 45vw, 340px" alt="Soft glam in natural sunlight with lashes, warm blush and a nude lip" width="640" height="800" loading="lazy" decoding="async"></button><figcaption>Sunlit soft glam</figcaption></figure>
+        <figure class="reveal"><button class="shot" type="button" aria-label="View larger: Golden hour glow"><img src="images/look-3-640.webp" srcset="images/look-3-400.webp 400w, images/look-3-640.webp 640w, images/look-3-1080.webp 1080w" sizes="(max-width:760px) 45vw, 340px" alt="Glowing skin with a soft wing and glossy lip at golden hour" width="640" height="800" loading="lazy" decoding="async"></button><figcaption>Golden hour glow</figcaption></figure>
+        <figure class="reveal"><button class="shot" type="button" aria-label="View larger: Rosy soft glam"><img src="images/look-4-640.webp" srcset="images/look-4-400.webp 400w, images/look-4-640.webp 640w, images/look-4-1080.webp 1080w" sizes="(max-width:760px) 45vw, 340px" alt="Rosy soft glam with a bright inner corner and glossy nude lip" width="640" height="800" loading="lazy" decoding="async"></button><figcaption>Rosy soft glam</figcaption></figure>
+        <figure class="reveal"><button class="shot" type="button" aria-label="View larger: Sculpted glow"><img src="images/look-5-640.webp" srcset="images/look-5-400.webp 400w, images/look-5-640.webp 640w, images/look-5-1080.webp 1080w" sizes="(max-width:760px) 45vw, 340px" alt="Sculpted glow with flushed cheeks and a soft brown liner" width="640" height="800" loading="lazy" decoding="async"></button><figcaption>Sculpted glow</figcaption></figure>
+        <figure class="reveal"><a class="more-tile" href="https://instagram.com/lafiglow" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+          <span class="more-big">More looks</span><span class="more-small">@lafiglow</span></a><figcaption>On Instagram</figcaption></figure>
+      </div>
+      <div class="insta reveal"><a class="btn btn-line" href="https://instagram.com/lafiglow" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+        More on @lafiglow</a></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT: edit the bio to her own words ===== -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="portrait reveal">
+        <div class="frame"><img src="images/artist-640.webp" srcset="images/artist-400.webp 400w, images/artist-640.webp 640w, images/artist-1080.webp 1080w" sizes="(max-width:960px) 90vw, 460px" alt="The artist behind Lafiglow, smiling in a green satin top and sheer jacket" width="640" height="800" loading="lazy" decoding="async"></div>
+        <div class="badge" aria-hidden="true"><span>Quad<br>Cities<br>✦</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <p class="eyebrow">Meet the artist</p>
+        <h2>Makeup that looks like <em>you</em>, glowing</h2>
+        <p>Lafiglow was created for the moments that matter: the wedding morning, the birthday dinner, the graduation photos, the night out you have been planning for weeks. My goal is simple. You should look in the mirror and see yourself at your most radiant, not a mask.</p>
+        <p class="pull">“Skin first, glow always, and a look that lasts from the first photo to the last dance.”</p>
+        <p>Every appointment starts with a conversation about your style, your skin and the occasion. From there I build a look that photographs beautifully and still feels like you in person. I work with all skin tones and types, use professional, hygienic products, and welcome you to the studio or come to you anywhere in the Quad Cities.</p>
+        <ul class="values">
+          <li>All skin tones</li>
+          <li>Long-wear finish</li>
+          <li>Clean, sanitized kit</li>
+          <li>Studio or on-location</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS =====
+       PLACEHOLDER REVIEWS: these are written examples, not real clients.
+       Replace with real client reviews (with their permission) before the site goes live.
+       Publishing made-up reviews as real ones is illegal under the FTC rule on fake reviews. -->
+  <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <p class="eyebrow">Kind words</p>
+      <h2 id="reviews-title">Loved by our <em style="color:var(--gold-soft)">clients</em></h2>
+      <div class="slider reveal" role="region" aria-roledescription="carousel" aria-label="Client reviews">
+        <div class="track" id="track" tabindex="0" role="group" aria-label="Reviews, use arrow keys to browse">
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 3"><figure>
+            <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>“I was so nervous about my wedding makeup because I usually don't wear much. The trial helped a lot, we changed the lip twice until it felt like me. On the day I cried during the vows and it still looked good in every picture. Thank you!!”</blockquote>
+            <figcaption><strong>Amina K.</strong> · Bridal, Davenport</figcaption>
+          </figure></div>
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3"><figure>
+            <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>“Booked soft glam for my birthday dinner. She matched my foundation perfectly, which never happens for me, and the lashes were comfy all night. Already booked again for graduation.”</blockquote>
+            <figcaption><strong>Destiny W.</strong> · Soft glam, Moline</figcaption>
+          </figure></div>
+          <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3"><figure>
+            <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>“She came to my house for me, my mom and my sister before an engagement party. Super clean setup, very sweet, and we were done on time. My mom keeps asking when we can do it again lol.”</blockquote>
+            <figcaption><strong>Hawa S.</strong> · Came to us, Rock Island</figcaption>
+          </figure></div>
+        </div>
+        <div class="controls">
+          <button class="ctl" type="button" id="prev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button class="ctl" type="button" id="next" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="ctl" type="button" id="pause" aria-label="Pause auto-rotation"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg></button>
+          <div class="dots-nav" id="dots"></div>
+        </div>
+        <p class="sr-only" aria-live="polite" id="slide-status"></p>
+      </div>
+      <div style="margin-top:3.5rem" class="reveal">
+        <a class="btn btn-gold" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book your glow
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 
   <section id="how">
     <div class="wrap">
-      <h2>How booking works</h2>
-      <p class="lede">No back-and-forth texting. Everything happens online.</p>
+      <div class="split-head reveal">
+        <div>
+          <p class="eyebrow">Easy as 1, 2, 3</p>
+          <h2>How booking <em>works</em></h2>
+        </div>
+        <p class="lede">No back-and-forth texting. Everything happens online.</p>
+      </div>
       <ol class="steps">
-        <li><h3>Pick a service and time</h3><p>See real availability and choose the slot that works for you.</p></li>
-        <li><h3>Pay your deposit</h3><p>A deposit secures your spot and goes toward your total.</p></li>
-        <li><h3>Get your reminder</h3><p>You'll receive a text and email reminder before your appointment.</p></li>
+        <li class="reveal"><h3>Pick a service and time</h3><p>See real availability and choose the slot that works for you.</p></li>
+        <li class="reveal"><h3>Pay your deposit</h3><p>A $15 deposit secures your spot and goes toward your total.</p></li>
+        <li class="reveal"><h3>Get your reminder</h3><p>You'll receive a text and email reminder before your appointment.</p></li>
       </ol>
     </div>
   </section>
 
-  <!-- ===== POLICIES: edit to match her real rules ===== -->
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="wrap faq-grid">
+      <div class="reveal">
+        <p class="eyebrow">Good to know</p>
+        <h2>Questions, <em>answered</em></h2>
+        <p>Can't find what you need? Email <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a> or send a DM on Instagram.</p>
+        <div class="area">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Service area</h3>
+          <p>Proudly serving the Quad Cities: Davenport, Bettendorf, Moline, Rock Island, East Moline and nearby. Traveling farther? Reach out and we'll make it work.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <details>
+          <summary>How far in advance should I book?<span class="pm" aria-hidden="true"></span></summary>
+          <p>For events, 2 to 4 weeks ahead is ideal. For weddings, book 3 to 6 months out, especially for spring and fall dates, and schedule your trial 1 to 2 months before the big day.</p>
+        </details>
+        <details>
+          <summary>Do you come to my home or venue?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Yes. Choose "come to you" when you book and I'll travel to your home, venue or hotel anywhere in the Quad Cities for a $30 travel fee. Prefer the studio? Pick the studio option instead.</p>
+        </details>
+        <details>
+          <summary>How long will my makeup last?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Looks are built with long-wear products and set to last all day and night. For weddings and long events, I can include a small touch-up tip so you stay fresh.</p>
+        </details>
+        <details>
+          <summary>I have sensitive skin or allergies. Is that okay?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Absolutely. Please note any sensitivities or allergies when booking so I can plan the right products for you.</p>
+        </details>
+        <details>
+          <summary>How should I prepare?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Arrive with a clean, moisturized face and no makeup. Bring inspiration photos if you have them. If you wear contacts, put them in before your appointment.</p>
+        </details>
+        <details>
+          <summary>Can you do my whole bridal party?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Yes. Bridal party makeup is $50 per person, booked as one appointment per person. For larger groups or very early start times, email me so we can plan the schedule together.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POLICIES: edit to match real rules ===== -->
   <section class="policies" id="policies">
     <div class="wrap">
-      <h2>Policies</h2>
-      <p class="lede">Please read before booking.</p>
-      <dl>
-        <dt>Deposits</dt><dd>A non-refundable $15 deposit is required to book and is applied to your total.</dd>
-        <dt>Rescheduling</dt><dd>Reschedule at least 48 hours before your appointment and your deposit transfers to the new date.</dd>
-        <dt>Late arrivals</dt><dd>Arriving more than 15 minutes late may shorten your service or require rescheduling.</dd>
-        <dt>Come prepared</dt><dd>Arrive with a clean, moisturized face. Share any skin sensitivities when booking.</dd>
-      </dl>
+      <div class="split-head reveal">
+        <div>
+          <p class="eyebrow">Before you book</p>
+          <h2>Policies</h2>
+        </div>
+        <p class="lede">A few simple rules that keep every appointment smooth and on time.</p>
+      </div>
+      <div class="policy-grid">
+        <div class="policy reveal"><h3>Deposits</h3><p>A non-refundable $15 deposit is required to book and is applied to your total.</p></div>
+        <div class="policy reveal"><h3>Rescheduling</h3><p>Reschedule at least 48 hours before your appointment and your deposit transfers to the new date.</p></div>
+        <div class="policy reveal"><h3>Late arrivals</h3><p>Arriving more than 15 minutes late may shorten your service or require rescheduling.</p></div>
+        <div class="policy reveal"><h3>Come prepared</h3><p>Arrive with a clean, moisturized face. Share any skin sensitivities when booking.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap reveal">
+      <p class="eyebrow">Your moment</p>
+      <h2>Ready to glow?</h2>
+      <p>Pick your look, choose your time, and let's make you feel unforgettable.</p>
+      <a class="btn btn-gold" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book an appointment
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 </main>
@@ -217,25 +611,102 @@
 <footer>
   <div class="wrap">
     <a href="#top" class="mark">Lafiglow</a>
+    <p class="where">Makeup artistry · Quad Cities, IA &amp; IL</p>
     <div class="links">
-      <a class="book-link" href="#">Book</a>
+      <a href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book</a>
       <a href="https://instagram.com/lafiglow" target="_blank" rel="noopener">Instagram</a>
       <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a>
+      <a href="#policies">Policies</a>
     </div>
-    <p>© <span id="yr"></span> Lafiglow. All rights reserved.</p>
+    <small>© <span id="yr">2026</span> Lafiglow. All rights reserved.</small>
   </div>
 </footer>
 
-<script>
-  // ===== Paste her Square Appointments booking link here =====
-  const BOOKING_URL = "https://squareup.com/appointments/book/L2T6F4907JKFY";
+<aside aria-label="Quick booking"><a class="btn btn-gold fab" id="fab" href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener">Book an appointment
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></aside>
 
-  document.querySelectorAll(".book-link").forEach(a => {
-    a.href = BOOKING_URL;
-    a.target = "_blank";
-    a.rel = "noopener";
-  });
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <div class="lb-stage" id="lb-stage"></div>
+  <p class="lb-cap" id="lb-cap"></p>
+  <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+  <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</dialog>
+
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Nav turns solid after the hero; floating Book pill appears on mobile
+  const nav = document.getElementById("nav"), fab = document.getElementById("fab");
+  const hero = document.getElementById("top"), final = document.querySelector(".final");
+  let finalVisible = false;
+  const inlineBook = new Set();
+  const onScroll = () => {
+    const y = scrollY;
+    nav.classList.toggle("solid", y > 40);
+    fab.classList.toggle("show", y > hero.offsetHeight * .7 && !finalVisible && inlineBook.size === 0);
+    nav.classList.toggle("fab-on", fab.classList.contains("show"));
+  };
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  new IntersectionObserver(([e]) => { finalVisible = e.isIntersecting; onScroll(); }).observe(final);
+  // hide the floating pill while another Book button is already on screen
+  const bookIO = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? inlineBook.add(e.target) : inlineBook.delete(e.target)); onScroll(); });
+  document.querySelectorAll("main a.btn-gold").forEach(a => bookIO.observe(a));
+
+  // Scroll reveal with a small stagger for siblings
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const sibs = [...e.target.parentElement.children].filter(c => c.classList.contains("reveal"));
+    e.target.style.transitionDelay = (reduce ? 0 : Math.max(0, sibs.indexOf(e.target)) * 90) + "ms";
+    e.target.classList.add("in"); io.unobserve(e.target);
+  }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  // Lightbox
+  const shots = [...document.querySelectorAll(".shot")];
+  const lb = document.getElementById("lightbox"), stage = document.getElementById("lb-stage"), cap = document.getElementById("lb-cap");
+  let cur = 0, lastFocus;
+  const show = i => {
+    cur = (i + shots.length) % shots.length;
+    const clone = shots[cur].firstElementChild.cloneNode(true);
+    if (clone.tagName === "IMG") { clone.removeAttribute("srcset"); clone.removeAttribute("sizes"); clone.src = clone.src.replace(/-(400|640)\./, "-1080."); clone.loading = "eager"; }
+    stage.replaceChildren(clone);
+    cap.textContent = shots[cur].closest("figure").querySelector("figcaption").textContent + `  ·  ${cur + 1} / ${shots.length}`;
+  };
+  shots.forEach((s, i) => s.addEventListener("click", () => { lastFocus = s; show(i); lb.showModal(); }));
+  document.getElementById("lb-prev").onclick = () => show(cur - 1);
+  document.getElementById("lb-next").onclick = () => show(cur + 1);
+  document.getElementById("lb-close").onclick = () => lb.close();
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("close", () => lastFocus && lastFocus.focus());
+  lb.addEventListener("keydown", e => { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  let tx = null;
+  lb.addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive: true });
+  lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); tx = null; });
+
+  // Reviews carousel: prev/next, dots, pause, stops on hover/focus and reduced motion
+  const track = document.getElementById("track"), slides = [...track.children];
+  const dots = document.getElementById("dots"), status = document.getElementById("slide-status");
+  const pauseBtn = document.getElementById("pause");
+  let idx = 0, timer = null, paused = reduce, hold = false;
+  slides.forEach((_, i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `Show review ${i + 1}`); b.onclick = () => go(i, true); dots.append(b); });
+  const mark = () => { [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === idx)); status.textContent = `Review ${idx + 1} of ${slides.length}`; };
+  const go = (i, user) => { idx = (i + slides.length) % slides.length; track.scrollTo({ left: slides[idx].offsetLeft - track.offsetLeft, behavior: reduce ? "auto" : "smooth" }); mark(); if (user) restart(); };
+  const restart = () => { clearInterval(timer); if (!paused && !hold) timer = setInterval(() => go(idx + 1), 6500); };
+  const setPaused = p => { paused = p; pauseBtn.setAttribute("aria-label", p ? "Play auto-rotation" : "Pause auto-rotation");
+    pauseBtn.innerHTML = p ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg>'; restart(); };
+  document.getElementById("prev").onclick = () => go(idx - 1, true);
+  document.getElementById("next").onclick = () => go(idx + 1, true);
+  pauseBtn.onclick = () => setPaused(!paused);
+  const slider = track.parentElement;
+  ["mouseenter", "focusin"].forEach(ev => slider.addEventListener(ev, () => { hold = true; restart(); }));
+  ["mouseleave", "focusout"].forEach(ev => slider.addEventListener(ev, () => { hold = false; restart(); }));
+  track.addEventListener("keydown", e => { if (e.key === "ArrowLeft") { e.preventDefault(); go(idx - 1, true); } if (e.key === "ArrowRight") { e.preventDefault(); go(idx + 1, true); } });
+  let st; track.addEventListener("scroll", () => { clearTimeout(st); st = setTimeout(() => { const n = Math.round(track.scrollLeft / track.clientWidth); if (n !== idx) { idx = n; mark(); } }, 120); }, { passive: true });
+  mark(); setPaused(paused);
+})();
 </script>
 </body>
 </html>
