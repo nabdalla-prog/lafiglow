@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pre-appointment form · Lafiglow</title>
+<meta name="description" content="A quick form to help Lafiglow plan the right products for your skin before your makeup appointment.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2A1420">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A1420'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='44' fill='%23C9A46A'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root{
+    --mulberry:#2A1420;--rosewood:#7E3F52;--champagne:#C9A46A;--gold-soft:#E4CFA3;
+    --blush:#F1DDD4;--porcelain:#FBF6F3;--ink:#3A2530;
+    --serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif;
+    --ease:cubic-bezier(.22,.7,.2,1);
+    --shadow:0 1px 2px rgba(42,20,32,.06),0 12px 32px -12px rgba(42,20,32,.22);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);line-height:1.6;font-size:1.0625rem;-webkit-font-smoothing:antialiased;min-height:100dvh}
+  a{color:var(--rosewood)}
+  button,input,textarea,select{font:inherit;color:inherit}
+  button{background:none;border:0;cursor:pointer}
+  :focus-visible{outline:2px solid var(--champagne);outline-offset:3px;border-radius:6px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* Layout: dark brand panel + form */
+  .page{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);min-height:100dvh}
+  .side{position:sticky;top:0;height:100dvh;background:var(--mulberry);color:var(--blush);padding:clamp(1.5rem,4vw,3.5rem);display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+  .side::before{content:"";position:absolute;width:60vmax;height:60vmax;border-radius:50%;left:-20vmax;bottom:-25vmax;background:radial-gradient(circle,rgba(201,164,106,.28),transparent 62%);z-index:-1}
+  .side::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .mark{font-family:var(--serif);font-style:italic;font-size:1.8rem;color:var(--blush);text-decoration:none}
+  .side h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,4.6vw,4rem);line-height:1.02;margin:auto 0 1rem}
+  .side h1 em{color:var(--gold-soft)}
+  .side .intro{opacity:.85;max-width:38ch;margin-bottom:2rem}
+  .check{list-style:none;display:grid;gap:.7rem;margin-bottom:auto}
+  .check li{display:flex;gap:.75rem;align-items:flex-start;font-size:.95rem}
+  .check svg{flex:0 0 1.2rem;height:1.2rem;color:var(--champagne);margin-top:.2rem}
+  .side .back{margin-top:2rem;font-size:.85rem;color:var(--blush);opacity:.75}
+  .eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-size:.75rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:1rem;font-weight:400}
+  .eyebrow::before{content:"";width:2rem;height:1px;background:currentColor;opacity:.6}
+
+  .main{padding:clamp(1.5rem,5vw,4.5rem) clamp(1.25rem,5vw,4.5rem) 6rem;max-width:760px;width:100%}
+  .progress{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
+  .bar{flex:1;height:4px;border-radius:999px;background:rgba(126,63,82,.14);overflow:hidden}
+  .bar i{display:block;height:100%;width:25%;background:linear-gradient(90deg,var(--rosewood),var(--champagne));border-radius:inherit;transition:width .6s var(--ease)}
+  .count{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rosewood);white-space:nowrap}
+
+  fieldset.step{border:0;display:none;animation:in .5s var(--ease)}
+  fieldset.step.on{display:block}
+  @keyframes in{from{opacity:0;translate:0 14px}}
+  .step legend{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,4vw,2.9rem);line-height:1.1;color:var(--mulberry);margin-bottom:.4rem}
+  .step legend:focus{outline:none}
+  .step legend em{color:var(--rosewood);font-weight:300}
+  .step .help{margin-bottom:2rem;opacity:.8}
+  .q{margin-bottom:1.9rem}
+  .q > label,.q > .ql{display:block;font-weight:400;color:var(--mulberry);margin-bottom:.6rem}
+  .q .opt{font-weight:300;color:#6b5560;font-size:.9rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.2rem}
+  input[type=text],input[type=email],input[type=tel],input[type=date],input[type=url],textarea{width:100%;padding:.9rem 1.1rem;border-radius:14px;border:1px solid rgba(126,63,82,.22);background:#fff;transition:border-color .2s,box-shadow .2s}
+  input:focus,textarea:focus{outline:none;border-color:var(--champagne);box-shadow:0 0 0 4px rgba(201,164,106,.18)}
+  textarea{min-height:6.5rem;resize:vertical}
+  .err{display:none;color:#a3263f;font-size:.85rem;margin-top:.4rem}
+  .q.bad .err{display:block}
+  .q.bad input,.q.bad .chips{border-color:#a3263f}
+
+  /* Chips (radio/checkbox styled as pills) */
+  .chips{display:flex;flex-wrap:wrap;gap:.55rem;border-radius:16px}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+  .chip span{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.05rem;border-radius:999px;border:1px solid rgba(126,63,82,.25);background:#fff;font-size:.95rem;transition:background .15s,color .15s,border-color .15s,transform .2s var(--ease)}
+  .chip span::before{content:"";width:.5rem;height:.5rem;border-radius:50%;border:1px solid rgba(126,63,82,.45);transition:background .2s,border-color .2s}
+  .chip:hover span{border-color:var(--rosewood)}
+  .chip input:checked + span{background:var(--mulberry);color:var(--blush);border-color:var(--mulberry)}
+  .chip input:checked + span::before{background:var(--champagne);border-color:var(--champagne)}
+  .chip input:focus-visible + span{outline:2px solid var(--champagne);outline-offset:3px}
+  .chip input:active + span{transform:scale(.97)}
+
+  /* Big cards for skin type */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem}
+  .card{position:relative}
+  .card input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+  .card span{display:flex;flex-direction:column;gap:.2rem;height:100%;padding:1rem 1.1rem;border-radius:16px;background:#fff;border:1px solid rgba(126,63,82,.2);transition:border-color .2s,box-shadow .2s,transform .25s var(--ease)}
+  .card b{font-family:var(--serif);font-weight:500;font-size:1.3rem;color:var(--mulberry)}
+  .card small{font-size:.82rem;opacity:.75;line-height:1.4}
+  .card:hover span{transform:translateY(-2px)}
+  .card input:checked + span{border-color:var(--champagne);box-shadow:0 0 0 2px var(--champagne),var(--shadow)}
+  .card input:focus-visible + span{outline:2px solid var(--champagne);outline-offset:3px}
+
+  .reveal-if{display:none;margin-top:.8rem}
+  .reveal-if.on{display:block;animation:in .4s var(--ease)}
+
+  .consent{display:flex;gap:.8rem;align-items:flex-start;padding:1.1rem 1.2rem;border-radius:16px;background:var(--blush);font-size:.92rem}
+  .consent input{margin-top:.3rem;width:1.1rem;height:1.1rem;accent-color:var(--rosewood);flex:0 0 auto}
+
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid rgba(126,63,82,.12)}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 2rem;border-radius:999px;font-weight:400;letter-spacing:.03em;text-decoration:none;transition:background .25s,color .25s,transform .25s var(--ease),box-shadow .25s}
+  .btn svg{width:1.05em;height:1.05em;transition:transform .25s var(--ease)}
+  .btn-gold{background:linear-gradient(120deg,var(--champagne),var(--gold-soft) 50%,var(--champagne));background-size:200% 100%;color:var(--mulberry);box-shadow:0 10px 30px -10px rgba(201,164,106,.7)}
+  .btn-gold:hover{background-position:100% 0;transform:translateY(-2px)}
+  .btn-gold:hover svg{transform:translateX(3px)}
+  .btn-gold[disabled]{opacity:.6;cursor:wait;transform:none}
+  .btn-line{border:1px solid rgba(126,63,82,.35);color:var(--mulberry)}
+  .btn-line:hover{background:var(--mulberry);color:var(--blush)}
+  .btn[hidden]{display:none}
+  .saved{font-size:.8rem;color:#6b5560;text-align:center;margin-top:1rem}
+  .send-err{display:none;margin-top:1rem;padding:1rem 1.2rem;border-radius:14px;background:#fbe9ec;color:#7a1d31;font-size:.92rem}
+  .send-err.on{display:block}
+
+  /* Done screen */
+  .done{display:none;text-align:center;padding-top:clamp(1rem,6vh,4rem)}
+  .done.on{display:block;animation:in .6s var(--ease)}
+  .seal{width:6rem;height:6rem;margin:0 auto 1.6rem;border-radius:50%;display:grid;place-items:center;background:var(--mulberry);color:var(--gold-soft);box-shadow:0 0 0 10px rgba(201,164,106,.18)}
+  .seal svg{width:2.4rem;height:2.4rem}
+  .done h2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.6rem,6vw,3.8rem);color:var(--mulberry);line-height:1.05;margin-bottom:.8rem}
+  .done p{max-width:46ch;margin:0 auto 1.2rem}
+  .tips{text-align:left;max-width:520px;margin:2rem auto;padding:1.6rem 1.8rem;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+  .tips h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--mulberry);margin-bottom:.8rem}
+  .tips ul{list-style:none;display:grid;gap:.6rem}
+  .tips li{display:flex;gap:.7rem;font-size:.95rem}
+  .tips li::before{content:"✦";color:var(--champagne);font-size:.8rem;margin-top:.2rem}
+
+  @media (max-width:900px){
+    .page{grid-template-columns:1fr}
+    .side{position:relative;height:auto;padding-bottom:1.8rem}
+    .side h1{margin-top:1.6rem;font-size:2.4rem}
+    .side .eyebrow{display:none}
+    .side .intro{margin-bottom:0;font-size:.95rem}
+    .check{display:none}
+    .side .back{display:none}
+  }
+  @media (max-width:560px){
+    .grid2{grid-template-columns:1fr}
+    .nav .btn{padding:.9rem 1.4rem}
+  }
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <a class="mark" href="./">Lafiglow</a>
+    <p class="eyebrow" style="margin-top:auto">Before your glow</p>
+    <h1>Let's get to know <em>your skin</em></h1>
+    <p class="intro">A few quick questions so I can bring the right products and plan your look. It takes about 3 minutes.</p>
+    <ul class="check" aria-label="How to prepare">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Arrive with a clean, moisturized face and no makeup</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Skip retinol and exfoliating acids for 2 days before</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Shape or wax brows at least 2 days ahead</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Put contacts in before your appointment</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Wear a button-up top so you don't pull anything over your face</li>
+    </ul>
+    <a class="back" href="./">&larr; Back to lafiglow.com</a>
+  </aside>
+
+  <main class="main" id="main">
+    <!-- Answers are emailed to hello@lafiglow.com through FormSubmit (formsubmit.co).
+         The very first submission sends a one-time "activate this form" email to that inbox. Click it once. -->
+    <form id="prep" action="https://formsubmit.co/hello@lafiglow.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="New Lafiglow pre-appointment form">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="progress" id="progress">
+        <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+        <span class="count" id="count" aria-live="polite">Step 1 of 4</span>
+      </div>
+
+      <!-- STEP 1 -->
+      <fieldset class="step on" data-step="1">
+        <legend>About <em>you</em></legend>
+        <p class="help">So I can match this form to your booking.</p>
+        <div class="grid2">
+          <div class="q" data-req>
+            <label for="name">Full name</label>
+            <input id="name" name="Name" type="text" autocomplete="name" required>
+            <p class="err">Please add your name.</p>
+          </div>
+          <div class="q" data-req>
+            <label for="phone">Phone</label>
+            <input id="phone" name="Phone" type="tel" autocomplete="tel" inputmode="tel" required>
+            <p class="err">Please add a phone number.</p>
+          </div>
+          <div class="q">
+            <label for="email">Email <span class="opt">(optional)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="q" data-req>
+            <label for="date">Appointment date</label>
+            <input id="date" name="Appointment date" type="date" required>
+            <p class="err">Please pick your appointment date.</p>
+          </div>
+        </div>
+        <div class="q" data-req data-group="Service">
+          <span class="ql" id="svc-l">Service you booked</span>
+          <div class="chips" role="radiogroup" aria-labelledby="svc-l">
+            <label class="chip"><input type="radio" name="Service" value="Mini glam" required><span>Mini glam</span></label>
+            <label class="chip"><input type="radio" name="Service" value="Soft glam"><span>Soft glam</span></label>
+            <label class="chip"><input type="radio" name="Service" value="Full glam"><span>Full glam</span></label>
+            <label class="chip"><input type="radio" name="Service" value="Bridal"><span>Bridal</span></label>
+            <label class="chip"><input type="radio" name="Service" value="Bridal party"><span>Bridal party</span></label>
+          </div>
+          <p class="err">Please choose a service.</p>
+        </div>
+        <div class="q">
+          <label for="occasion">What's the occasion? <span class="opt">(optional)</span></label>
+          <input id="occasion" name="Occasion" type="text" placeholder="Wedding, birthday, photoshoot, graduation…">
+        </div>
+      </fieldset>
+
+      <!-- STEP 2 -->
+      <fieldset class="step" data-step="2">
+        <legend>Your <em>skin</em></legend>
+        <p class="help">Not sure? That's okay. Pick what feels closest.</p>
+        <div class="q" data-req data-group="Skin type">
+          <span class="ql" id="type-l">Skin type</span>
+          <div class="cards" role="radiogroup" aria-labelledby="type-l">
+            <label class="card"><input type="radio" name="Skin type" value="Dry" required><span><b>Dry</b><small>Feels tight, can flake</small></span></label>
+            <label class="card"><input type="radio" name="Skin type" value="Oily"><span><b>Oily</b><small>Shiny by midday</small></span></label>
+            <label class="card"><input type="radio" name="Skin type" value="Combination"><span><b>Combination</b><small>Oily T-zone, dry cheeks</small></span></label>
+            <label class="card"><input type="radio" name="Skin type" value="Normal"><span><b>Normal</b><small>Balanced most days</small></span></label>
+            <label class="card"><input type="radio" name="Skin type" value="Not sure"><span><b>Not sure</b><small>I'll check it for you</small></span></label>
+          </div>
+          <p class="err">Please choose your skin type.</p>
+        </div>
+        <div class="q">
+          <span class="ql" id="con-l">Anything you'd like me to know about? <span class="opt">(pick any)</span></span>
+          <div class="chips" role="group" aria-labelledby="con-l">
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Breakouts / acne"><span>Breakouts</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Dark spots / hyperpigmentation"><span>Dark spots</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Redness"><span>Redness</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Dryness / flaking"><span>Dry patches</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Large pores / texture"><span>Texture</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Under-eye circles"><span>Under-eye circles</span></label>
+            <label class="chip"><input type="checkbox" name="Skin concerns" value="Sensitive skin"><span>Sensitive</span></label>
+          </div>
+        </div>
+        <div class="q">
+          <span class="ql" id="und-l">Undertone <span class="opt">(optional)</span></span>
+          <div class="chips" role="radiogroup" aria-labelledby="und-l">
+            <label class="chip"><input type="radio" name="Undertone" value="Warm"><span>Warm</span></label>
+            <label class="chip"><input type="radio" name="Undertone" value="Cool"><span>Cool</span></label>
+            <label class="chip"><input type="radio" name="Undertone" value="Neutral"><span>Neutral</span></label>
+            <label class="chip"><input type="radio" name="Undertone" value="Not sure"><span>Not sure</span></label>
+          </div>
+        </div>
+        <div class="q">
+          <label for="shade">Foundation you love or your shade <span class="opt">(optional)</span></label>
+          <input id="shade" name="Foundation / shade" type="text" placeholder="e.g. Fenty 445, or “I don't wear foundation”">
+        </div>
+      </fieldset>
+
+      <!-- STEP 3 -->
+      <fieldset class="step" data-step="3">
+        <legend>Health &amp; <em>sensitivities</em></legend>
+        <p class="help">This keeps your skin and eyes safe. Everything stays private.</p>
+        <div class="q" data-req data-group="Allergies">
+          <span class="ql" id="al-l">Any allergies or reactions to makeup, skincare or lash glue?</span>
+          <div class="chips" role="radiogroup" aria-labelledby="al-l">
+            <label class="chip"><input type="radio" name="Allergies" value="No" required><span>No</span></label>
+            <label class="chip"><input type="radio" name="Allergies" value="Yes" data-toggle="al-more"><span>Yes</span></label>
+            <label class="chip"><input type="radio" name="Allergies" value="Not sure"><span>Not sure</span></label>
+          </div>
+          <div class="reveal-if" id="al-more">
+            <label class="sr-only" for="al-text">Tell me about your allergies</label>
+            <textarea id="al-text" name="Allergy details" placeholder="What are you allergic to, and what happens?"></textarea>
+          </div>
+          <p class="err">Please answer this one.</p>
+        </div>
+        <div class="q">
+          <span class="ql" id="act-l">In the last week, have you used or had… <span class="opt">(pick any)</span></span>
+          <div class="chips" role="group" aria-labelledby="act-l">
+            <label class="chip"><input type="checkbox" name="Recent skincare" value="Retinol / tretinoin"><span>Retinol / tretinoin</span></label>
+            <label class="chip"><input type="checkbox" name="Recent skincare" value="Exfoliating acids (AHA/BHA)"><span>Exfoliating acids</span></label>
+            <label class="chip"><input type="checkbox" name="Recent skincare" value="Facial or peel"><span>Facial or peel</span></label>
+            <label class="chip"><input type="checkbox" name="Recent skincare" value="Waxing or threading"><span>Waxing / threading</span></label>
+            <label class="chip"><input type="checkbox" name="Recent skincare" value="Sunburn"><span>Sunburn</span></label>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="q">
+            <span class="ql" id="ct-l">Do you wear contacts?</span>
+            <div class="chips" role="radiogroup" aria-labelledby="ct-l">
+              <label class="chip"><input type="radio" name="Contacts" value="Yes"><span>Yes</span></label>
+              <label class="chip"><input type="radio" name="Contacts" value="No"><span>No</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <span class="ql" id="ey-l">Sensitive or watery eyes?</span>
+            <div class="chips" role="radiogroup" aria-labelledby="ey-l">
+              <label class="chip"><input type="radio" name="Sensitive eyes" value="Yes"><span>Yes</span></label>
+              <label class="chip"><input type="radio" name="Sensitive eyes" value="No"><span>No</span></label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- STEP 4 -->
+      <fieldset class="step" data-step="4">
+        <legend>Your <em>dream look</em></legend>
+        <p class="help">Help me picture it. We'll fine-tune together in person.</p>
+        <div class="q">
+          <span class="ql" id="vibe-l">Overall vibe</span>
+          <div class="chips" role="group" aria-labelledby="vibe-l">
+            <label class="chip"><input type="checkbox" name="Vibe" value="Natural / no-makeup makeup"><span>Natural</span></label>
+            <label class="chip"><input type="checkbox" name="Vibe" value="Soft and glowy"><span>Soft &amp; glowy</span></label>
+            <label class="chip"><input type="checkbox" name="Vibe" value="Full glam"><span>Full glam</span></label>
+            <label class="chip"><input type="checkbox" name="Vibe" value="Bold eye"><span>Bold eye</span></label>
+            <label class="chip"><input type="checkbox" name="Vibe" value="Bold lip"><span>Bold lip</span></label>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="q">
+            <span class="ql" id="lash-l">Lashes</span>
+            <div class="chips" role="radiogroup" aria-labelledby="lash-l">
+              <label class="chip"><input type="radio" name="Lashes" value="None"><span>None</span></label>
+              <label class="chip"><input type="radio" name="Lashes" value="Natural / wispy"><span>Wispy</span></label>
+              <label class="chip"><input type="radio" name="Lashes" value="Full / dramatic"><span>Dramatic</span></label>
+              <label class="chip"><input type="radio" name="Lashes" value="Bringing my own"><span>My own</span></label>
+            </div>
+          </div>
+          <div class="q">
+            <span class="ql" id="fin-l">Skin finish</span>
+            <div class="chips" role="radiogroup" aria-labelledby="fin-l">
+              <label class="chip"><input type="radio" name="Finish" value="Dewy"><span>Dewy</span></label>
+              <label class="chip"><input type="radio" name="Finish" value="Satin"><span>Satin</span></label>
+              <label class="chip"><input type="radio" name="Finish" value="Matte"><span>Matte</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="q">
+          <label for="insp">Inspiration link <span class="opt">(Instagram, Pinterest or TikTok, optional)</span></label>
+          <input id="insp" name="Inspiration link" type="url" inputmode="url" placeholder="https://">
+        </div>
+        <div class="q">
+          <label for="notes">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="notes" name="Notes" placeholder="Outfit colors, things you don't like, timing, how many people…"></textarea>
+        </div>
+        <div class="q" data-req data-group="consent">
+          <label class="consent"><input type="checkbox" name="Consent" value="Yes" required>I confirm this information is accurate and I'll let Lafiglow know if anything changes before my appointment.</label>
+          <p class="err">Please confirm to send the form.</p>
+        </div>
+      </fieldset>
+
+      <div class="nav" id="navbar">
+        <button class="btn btn-line" type="button" id="prev" hidden>&larr; Back</button>
+        <span></span>
+        <button class="btn btn-gold" type="button" id="next">Continue <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn btn-gold" type="submit" id="send" hidden>Send to Lafiglow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="saved" id="saved">Your answers are saved on this device until you send them.</p>
+      <p class="send-err" id="send-err" role="alert">Something went wrong sending your form. Please try again, or email <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a>.</p>
+    </form>
+
+    <section class="done" id="done" aria-live="polite" tabindex="-1">
+      <div class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12l5 5L20 7"/></svg></div>
+      <h2>Thank you, <span id="first">love</span></h2>
+      <p>Your form is on its way. I'll use it to plan the perfect products for your skin. See you soon!</p>
+      <div class="tips">
+        <h3>Your prep checklist</h3>
+        <ul>
+          <li>Arrive with a clean, moisturized face and no makeup</li>
+          <li>Skip retinol and exfoliating acids for 2 days before</li>
+          <li>Shape or wax brows at least 2 days ahead</li>
+          <li>Put contacts in before your appointment</li>
+          <li>Wear a button-up top</li>
+          <li>Bring inspiration photos if you have them</li>
+        </ul>
+      </div>
+      <a class="btn btn-line" href="./">Back to Lafiglow</a>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const form = document.getElementById("prep"), steps = [...form.querySelectorAll(".step")];
+  const prev = document.getElementById("prev"), next = document.getElementById("next"), send = document.getElementById("send");
+  const bar = document.getElementById("bar"), count = document.getElementById("count");
+  const KEY = "lafiglow-prep";
+  let cur = 0;
+
+  // Prefill service from ?service= (used by the booking window)
+  const svc = new URLSearchParams(location.search).get("service");
+  if (svc) { const r = form.querySelector(`input[name="Service"][value="${CSS.escape(svc)}"]`); if (r) r.checked = true; }
+
+  // Restore saved answers
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+    Object.entries(saved).forEach(([name, val]) => {
+      const els = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+      els.forEach(el => {
+        if (el.type === "radio" || el.type === "checkbox") el.checked = [].concat(val).includes(el.value);
+        else if (el.type !== "hidden" && el.name !== "_honey") el.value = val;
+      });
+    });
+  } catch {}
+  const save = () => {
+    const data = {};
+    new FormData(form).forEach((v, k) => { if (k.startsWith("_")) return; data[k] = k in data ? [].concat(data[k], v) : v; });
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch {}
+  };
+  form.addEventListener("input", save); form.addEventListener("change", save);
+
+  // Conditional reveal (allergy details)
+  const syncReveal = () => form.querySelectorAll("[data-toggle]").forEach(t => {
+    const box = document.getElementById(t.dataset.toggle);
+    box.classList.toggle("on", t.checked);
+  });
+  form.addEventListener("change", syncReveal); syncReveal();
+
+  const checkQ = q => {
+    const inputs = [...q.querySelectorAll("input,textarea")].filter(i => i.required || i.type === "radio" || i.type === "checkbox");
+    const good = q.dataset.group ? inputs.some(i => i.checked) : inputs.every(i => i.value.trim());
+    q.classList.toggle("bad", !good);
+    return good ? null : inputs[0];
+  };
+  const valid = step => {
+    let first = null;
+    step.querySelectorAll(".q[data-req]").forEach(q => { const bad = checkQ(q); first ??= bad; });
+    first?.focus();
+    return !first;
+  };
+  form.addEventListener("input", e => { const q = e.target.closest(".q.bad"); if (q) checkQ(q); });
+  form.addEventListener("change", e => { const q = e.target.closest(".q.bad"); if (q) checkQ(q); });
+
+  const show = i => {
+    cur = i;
+    steps.forEach((s, j) => s.classList.toggle("on", j === i));
+    prev.hidden = i === 0;
+    next.hidden = i === steps.length - 1;
+    send.hidden = i !== steps.length - 1;
+    bar.style.width = ((i + 1) / steps.length * 100) + "%";
+    count.textContent = `Step ${i + 1} of ${steps.length}`;
+    scrollTo({ top: document.getElementById("main").offsetTop - 10, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    steps[i].querySelector("legend").setAttribute("tabindex", "-1");
+    steps[i].querySelector("legend").focus({ preventScroll: true });
+  };
+  next.onclick = () => { if (valid(steps[cur])) show(cur + 1); };
+  prev.onclick = () => show(cur - 1);
+  form.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.tagName === "INPUT" && cur < steps.length - 1) { e.preventDefault(); next.click(); }
+  });
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!valid(steps[cur])) return;
+    const err = document.getElementById("send-err");
+    err.classList.remove("on");
+    send.disabled = true; send.firstChild.textContent = "Sending… ";
+    const fd = new FormData(form);
+    // join multi-select answers so they read nicely in the email
+    const body = {};
+    fd.forEach((v, k) => { body[k] = k in body ? body[k] + ", " + v : v; });
+    try {
+      const res = await fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body)
+      });
+      if (!res.ok) throw new Error(res.status);
+      const out = await res.json().catch(() => ({}));
+      if (String(out.success) === "false") throw new Error(out.message || "not sent");
+      localStorage.removeItem(KEY);
+      document.getElementById("first").textContent = (body.Name || "love").trim().split(/\s+/)[0];
+      form.hidden = true;
+      const done = document.getElementById("done");
+      done.classList.add("on"); done.focus();
+      scrollTo({ top: 0 });
+    } catch {
+      err.classList.add("on");
+      send.disabled = false; send.firstChild.textContent = "Send to Lafiglow ";
+    }
+  });
+
+  show(0); scrollTo(0, 0);
+})();
+</script>
+</body>
+</html>
