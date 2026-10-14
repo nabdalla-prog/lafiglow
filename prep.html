@@ -406,10 +406,12 @@
     });
   } catch {}
 
-  // Prefill service from ?service= (used by the booking window). Runs after the restore so
-  // the service just picked in the booking window wins over an older saved answer.
-  const svc = new URLSearchParams(location.search).get("service");
+  // Prefill service from ?service= and date from ?date=YYYY-MM-DD (used by the booking window
+  // and the after-booking email). Runs after the restore so the new booking wins over old answers.
+  const params = new URLSearchParams(location.search);
+  const svc = params.get("service"), day = params.get("date");
   if (svc) { const r = form.querySelector(`input[name="Service"][value="${CSS.escape(svc)}"]`); if (r) r.checked = true; }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(day || "") && day >= dateIn.min) dateIn.value = day;
 
   const save = () => {
     const data = {};
