@@ -193,7 +193,7 @@
           <div class="q" data-req>
             <label for="date">Appointment date</label>
             <input id="date" name="Appointment date" type="date" required>
-            <p class="err">Please pick your appointment date.</p>
+            <p class="err">Please pick your appointment date (today or later).</p>
           </div>
         </div>
         <div class="q" data-req data-group="Service">
@@ -354,7 +354,7 @@
         <button class="btn btn-gold" type="submit" id="send" hidden>Send to Lafiglow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
       <p class="saved" id="saved">Your answers are saved on this device until you send them.</p>
-      <p class="send-err" id="send-err" role="alert">Something went wrong sending your form. Please try again, or email <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a>.</p>
+      <p class="send-err" id="send-err" role="alert">Something went wrong sending your form. Please try again, or email <a data-mail href="./#faq">hello [at] lafiglow.com</a>.</p>
     </form>
 
     <section class="done" id="done" aria-live="polite" tabindex="-1">
@@ -385,14 +385,19 @@
   const KEY = "lafiglow-prep";
   let cur = 0;
 
-  // Prefill service from ?service= (used by the booking window)
-  const svc = new URLSearchParams(location.search).get("service");
-  if (svc) { const r = form.querySelector(`input[name="Service"][value="${CSS.escape(svc)}"]`); if (r) r.checked = true; }
+  // Email links are written as "hello [at] lafiglow.com" so spam bots can't scrape the address
+  document.querySelectorAll("a[data-mail]").forEach(a => { a.textContent = a.textContent.replace(" [at] ", "@"); a.href = "mailto:" + ["hello", "lafiglow.com"].join("@"); });
 
-  // Restore saved answers
+  // Appointment date can't be in the past (local date, not UTC)
+  const dateIn = document.getElementById("date");
+  const now = new Date();
+  dateIn.min = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+  // Restore saved answers (consent is never restored, it must be ticked fresh)
   try {
     const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
     Object.entries(saved).forEach(([name, val]) => {
+      if (name === "Consent") return;
       const els = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
       els.forEach(el => {
         if (el.type === "radio" || el.type === "checkbox") el.checked = [].concat(val).includes(el.value);
@@ -400,6 +405,12 @@
       });
     });
   } catch {}
+
+  // Prefill service from ?service= (used by the booking window). Runs after the restore so
+  // the service just picked in the booking window wins over an older saved answer.
+  const svc = new URLSearchParams(location.search).get("service");
+  if (svc) { const r = form.querySelector(`input[name="Service"][value="${CSS.escape(svc)}"]`); if (r) r.checked = true; }
+
   const save = () => {
     const data = {};
     new FormData(form).forEach((v, k) => { if (k.startsWith("_")) return; data[k] = k in data ? [].concat(data[k], v) : v; });
@@ -416,7 +427,7 @@
 
   const checkQ = q => {
     const inputs = [...q.querySelectorAll("input,textarea")].filter(i => i.required || i.type === "radio" || i.type === "checkbox");
-    const good = q.dataset.group ? inputs.some(i => i.checked) : inputs.every(i => i.value.trim());
+    const good = q.dataset.group ? inputs.some(i => i.checked) : inputs.every(i => i.value.trim() && !(i.min && i.value < i.min));
     q.classList.toggle("bad", !good);
     return good ? null : inputs[0];
   };

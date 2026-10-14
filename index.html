@@ -34,7 +34,6 @@
   "name": "Lafiglow",
   "description": "Makeup artist for weddings, events and special occasions in the Quad Cities.",
   "url": "https://lafiglow.com/",
-  "email": "hello@lafiglow.com",
   "priceRange": "$35 - $150",
   "areaServed": [
     {"@type": "City", "name": "Davenport, IA"},
@@ -627,7 +626,7 @@
       <div class="reveal">
         <p class="eyebrow">Good to know</p>
         <h2>Questions, <em>answered</em></h2>
-        <p>Can't find what you need? Email <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a> or send a DM on Instagram.</p>
+        <p>Can't find what you need? Email <a data-mail href="#faq">hello [at] lafiglow.com</a> or send a DM on Instagram.</p>
         <div class="area">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Service area</h3>
           <p>Proudly serving the Quad Cities: Davenport, Bettendorf, Moline, Rock Island, East Moline and nearby. Traveling farther? Reach out and we'll make it work.</p>
@@ -699,7 +698,7 @@
     <div class="links">
       <a href="https://squareup.com/appointments/book/L2T6F4907JKFY" target="_blank" rel="noopener" data-book>Book</a>
       <a href="https://instagram.com/lafiglow" target="_blank" rel="noopener">Instagram</a>
-      <a href="mailto:hello@lafiglow.com">hello@lafiglow.com</a>
+      <a data-mail href="#faq">hello [at] lafiglow.com</a>
       <a href="prep.html">Pre-appointment form</a>
       <a href="#policies">Policies</a>
     </div>
@@ -762,7 +761,7 @@
     </div>
     <div class="bk-foot">
       <span class="bk-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure booking &amp; payment by Square</span>
-      <a href="mailto:hello@lafiglow.com">Questions? hello@lafiglow.com</a>
+      <a data-mail href="#faq">Questions? hello [at] lafiglow.com</a>
     </div>
   </div>
 </dialog>
@@ -779,6 +778,8 @@
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("yr").textContent = new Date().getFullYear();
+  // Email links are written as "hello [at] lafiglow.com" so spam bots can't scrape the address
+  document.querySelectorAll("a[data-mail]").forEach(a => { a.textContent = a.textContent.replace(" [at] ", "@"); a.href = "mailto:" + ["hello", "lafiglow.com"].join("@"); });
 
   // Nav turns solid after the hero; floating Book pill appears on mobile
   const nav = document.getElementById("nav"), fab = document.getElementById("fab");
@@ -921,7 +922,7 @@
     bookOpener?.focus();
   });
   addEventListener("popstate", () => { if (booker.open && !history.state?.booking) closeBooker(); });
-  if (location.hash === "#book") { history.replaceState(null, "", location.pathname); booker.showModal(); showPicker(); }
+  if (location.hash === "#book") { history.replaceState(null, "", location.pathname); booker.showModal(); document.documentElement.style.overflow = "hidden"; showPicker(); }
 })();
 </script>
 </body>
